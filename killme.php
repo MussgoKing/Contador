@@ -7,7 +7,7 @@
 	$sqlIP = "SELECT ip FROM pulsera WHERE id_pulsera = '1'"; //esto debe reemplazarse por la ip correspondiente a la pulsera asignada al usuario
 	$result1 = $conn->query($sqlIP);
 	$rows1 = $result1->fetchAll();
-	/*otro gato*/
+	/*consulta tiempo*/
 	$sql = "SELECT descripcion FROM tiempo WHERE id_tiempo = '1'"; //esto también debe cambiarse por el registro de tiempo que tenga el usuario
 	$result2 = $conn->query($sql);
 	$rows = $result2->fetchAll();
