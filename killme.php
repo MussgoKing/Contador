@@ -52,24 +52,25 @@ function startTimer(duration, display) {
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
         display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-			mandaAlvAlMorro() /*aqui esta el bug, a pesar de que el contador ya llegó a 0, sigue habiendo un conteo y al pasar de nuevo el tiempo establecido, 
-			vuelve a ejecutar este script, lo que abre ventana tras ventana y por consiguiente, se manda la orden a la pulsera cicliamente*/
-			display = "";
-			clearInterval(intervalo);
-        }
+		
+			if (--timer < 0) {
+				timer = duration;
+				mandaAlvAlMorro() /*aqui esta el bug, a pesar de que el contador ya llegó a 0, sigue habiendo un conteo y al pasar de nuevo el tiempo establecido, 
+				vuelve a ejecutar este script, lo que abre ventana tras ventana y por consiguiente, se manda la orden a la pulsera cicliamente*/
+				display = "";
+				clearInterval(intervalo);
+			}
     }, 1000); //esto son los milisegundos/velocidad a la que hará el conteo
 	
   }
+  if(<?php echo $kk;?> == 1){
 	window.onload = function () { //lo que hace esto es asignar y desplegar la info en el div señalado
     	var tiempo = 10 * 1, //aqui meter el tiempo de ['descripcion']
         display = document.querySelector('#time');
-		startTimer(tiempo, display);
-	};	
+		startTimer(tiempo, display)
+	};
+  }	
     
 </script>
 <div>
