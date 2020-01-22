@@ -4,7 +4,7 @@
 	$result2 = "";
 	
 	/*Consulta ip*/
-	$sqlIP = "SELECT ip FROM pulsera WHERE id_pulsera = '1'"; //esto debe reemplazarse por la ip correspondiente a la pulsera asignada al usuario
+	$sqlIP = "SELECT ip, estado FROM pulsera WHERE id_pulsera = '1'"; //esto debe reemplazarse por la ip correspondiente a la pulsera asignada al usuario
 	$result1 = $conn->query($sqlIP);
 	$rows1 = $result1->fetchAll();
 	/*consulta tiempo*/
@@ -18,8 +18,11 @@
 
 	foreach ($rows1 as $row1){
 		$ip = $row1["ip"];
+		$jalisco = $row1['estado'];
+		$kk = (int)$jalisco;
 	}
-
+	var_dump($jalisco);
+	var_dump($kk);
 	/*var_dump($tiempo);
 	var_dump($ip);*/
 
@@ -37,13 +40,13 @@ function mandaAlvAlMorro()
 {
 	let bandera = "LED=TODOOFF"
     var host = '<?php echo $ip;?>'
-	todooff = window.open(host+bandera); //window.location.replace(host+bandera); esto reemplaza la ventana actual, lo cambié para que se abra una nueva ventana
-	cerrar = setTimeout(function(){todooff.window.close()}, 10000); //cierra la ventana abierta (del server de la pulsera) después de x tiempo
+	todooff = window.open(host+bandera); //window.location.replace(host+bandera); esto reemplaza la ventana actual, lo cambié para que se abra una nueva pestaña
+	cerrar = setTimeout(function(){todooff.window.close()}, 10000); //cierra la pestaña abierta (del server de la pulsera) después de x tiempo
 }
 		
 function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
+	var timer = duration, minutes, seconds;
+    var intervalo = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -57,17 +60,16 @@ function startTimer(duration, display) {
 			mandaAlvAlMorro() /*aqui esta el bug, a pesar de que el contador ya llegó a 0, sigue habiendo un conteo y al pasar de nuevo el tiempo establecido, 
 			vuelve a ejecutar este script, lo que abre ventana tras ventana y por consiguiente, se manda la orden a la pulsera cicliamente*/
 			display = "";
-			minutes = "--";
-			seconds = "--"; //Esto no funciona, quise mutar las variables en un intento de detener el conteo oculto
+			clearInterval(intervalo);
         }
     }, 1000); //esto son los milisegundos/velocidad a la que hará el conteo
-}
-
-window.onload = function () { //lo que hace esto es asignar y desplegar la info en el div señalado
-    var tiempo = 60 * 1, //aqui meter el tiempo de ['descripcion']
+	
+  }
+	window.onload = function () { //lo que hace esto es asignar y desplegar la info en el div señalado
+    	var tiempo = 10 * 1, //aqui meter el tiempo de ['descripcion']
         display = document.querySelector('#time');
-    startTimer(tiempo, display);
-};
+		startTimer(tiempo, display);
+	};	
     
 </script>
 <div>
