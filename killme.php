@@ -44,10 +44,10 @@
 			//actualizamos el div que nos mostrará el estado de la puerta
 			document.getElementById("estado").innerHTML = "Estado de la puerta Obtenido en AJAX: "+resultadoGlobal;
 			}
-			console.log("estoy despues de la confirmacion AJAX, resultadoGlobal tiene: "+resultadoGlobal)
 			//con esto llamamos a la función confirmacion cada segundo para actualizar el div que mostrará el estado
 			setInterval(confirmacion,1000);
-		
+			console.log("estoy despues de la confirmacion AJAX, resultadoGlobal tiene: "+resultadoGlobal)
+			
 		function mandaAlvAlMorro()
 		{
 			let bandera = "LED=TODOOFF"
