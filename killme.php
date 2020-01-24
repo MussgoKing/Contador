@@ -31,12 +31,12 @@
 <script type="text/javascript">
 	var resultadoGlobal;
 		function confirmacion() { 
-				$.ajax({ //GUARDAMOS EN UNA VARIABLE EL RESULTADO DE LA CONSULTA AJAX   
+				estado = $.ajax({ //GUARDAMOS EN UNA VARIABLE EL RESULTADO DE LA CONSULTA AJAX   
 				url: 'puerta.php', //indicamos la ruta donde se genera la consulta
 				dataType: 'text',//indicamos que es de tipo texto plano
 				async: false,     //ponemos el parámetro asyn a falso
-				success:function(resultado){
-					resultadoGlobal = resultado;
+				success:function(){
+					resultadoGlobal = estado;
 					console.log("Obtuve esto del AJAX: "+resultadoGlobal);
 				}
 			}).responseText;
@@ -47,7 +47,7 @@
 			//con esto llamamos a la función confirmacion cada segundo para actualizar el div que mostrará el estado
 			setInterval(confirmacion,1000);
 			console.log("estoy despues de la confirmacion AJAX, resultadoGlobal tiene: "+resultadoGlobal)
-			
+
 		function mandaAlvAlMorro()
 		{
 			let bandera = "LED=TODOOFF"
